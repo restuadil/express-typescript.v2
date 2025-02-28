@@ -13,7 +13,7 @@ app.use(routeMiddleware);
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
-
+// server.listen
 app.listen(env.PORT, () => {
   logger.info(`Server is running in ${env.NODE_ENV} mode on port ${env.PORT}`);
 });

@@ -12,10 +12,11 @@ export const errorMiddleware = (
 ) => {
   logger.error(error);
   if (error instanceof ZodError) {
+    const messages = error.issues.map((issue) => issue.message);
     res.status(400).json({
       success: false,
       statusCode: 400,
-      message: `Validation Error : ${JSON.stringify(error.message)}`,
+      message: `Validation Error : ${messages}`,
     });
   } else if (error instanceof Prisma.PrismaClientUnknownRequestError) {
     res.status(500).json({
@@ -36,6 +37,4 @@ export const errorMiddleware = (
       message: "Internal Server Error",
     });
   }
-
-  next();
 };

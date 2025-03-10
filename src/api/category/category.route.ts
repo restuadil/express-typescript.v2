@@ -6,5 +6,9 @@ export const CategoryRouter = Router();
 CategoryRouter.get("/category", CategoryController.get);
 CategoryRouter.get("/category/:id", uuidMiddleware, CategoryController.get);
 CategoryRouter.post("/category", CategoryController.create);
-CategoryRouter.put("/category/:id", CategoryController.update);
-CategoryRouter.delete("/category/:id", CategoryController.delete);
+CategoryRouter.put("/category/:id", uuidMiddleware, CategoryController.update);
+CategoryRouter.delete(
+  "/category/:id",
+  uuidMiddleware,
+  CategoryController.delete
+);
